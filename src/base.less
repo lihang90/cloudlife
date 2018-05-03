@@ -1,0 +1,321 @@
+//基本长度单位
+@p1:1px;
+@p2:2px;
+@p5:5px;
+@p10:10px;
+@p12:12px;
+@p14:14px;
+@p16:16px;
+@p20:20px;
+@p24:24px;
+
+@max-width:640px;
+@min-width:320px;
+
+@no:none;
+@yahei:'微软雅黑';
+@cen:center;
+@l:left;
+@r:right;
+@c:center;
+
+//颜色值
+@cblack:#000;
+@cred:#da5656;
+@cwhite:#fff;
+@cblue:#387be8;
+@cyellow:#ffd200;
+@cgraybg:#f4f4f4;
+@ce:#eeeeee;
+@cde:#dedede;
+@cgrayborder:#dcdcdc;
+
+
+
+//图片基本路径
+@baseurl : "../../images/";
+
+
+//初始与基础类
+html{
+  font-size:62.5%;
+}
+body,li,ul,h2,h1,h3,h4,h5,h6,p,dl,dd,dt{margin:0;}
+
+body{
+  font-size:1.2rem;
+  font-family:@yahei,Heiti SC;
+}
+@media screen and (max-width: 414px) {
+  body {
+    font-size:1.5rem;
+  }
+}
+@media screen and (max-width: 375px) {
+  body {
+    font-size:1.4rem;
+  }
+}
+@media screen and (max-width: 320px) {
+  body {
+    font-size:1.2rem;
+  }
+}
+.wrap{
+  min-width: @min-width;
+  max-width: @max-width;
+  .w(100%);
+  .ma;
+  overflow:hidden;
+}
+ul{padding:0;}
+li{list-style:@no;}
+a{text-decoration:@no; color:@cblack;}
+.tl{text-align:left;} .tr{text-align:right;}
+.fb{font-weight:bold;} .fn{font-weight:normal;}
+.mt20{margin-top:@p20;}
+.mt10{margin-top:@p10;}
+.ml10{margin-left:@p10;}
+.mr10{margin-right:@p10;}
+.mt15{margin-top:15px;}
+.mr5{margin-right:@p5;}
+.mt5{margin-top:@p5;}
+.ma{margin:0 auto;}
+.p10{padding:@p10;}
+.pb10{padding:@p10;}
+.ml5{margin-left:@p5;}
+.dn{display:@no;}
+.db{display:block;}
+.g6{color:#666;}
+.g3{color:#333;}
+.g9{color:#999;}
+.gc{color:#ccc;}
+.tc{text-align:@c;}
+.f14{ font-size:1.4rem;}
+.f10{font-size:1rem;}
+.f16{font-size:1.6rem;}
+.ell{text-overflow:ellipsis;overflow:hidden; white-space:nowrap;}
+.oh{overflow:hidden;}
+.fix { *zoom:1; }
+.fix:after {content:"\200B"; display:block; height:0; clear:both; }/*用于清除浮动，内容为\200B指零宽度空格，即可省略visible:hidden*/
+
+.pt10{padding-top:@p10;}
+.pt20{padding-top:@p20;}
+:root,body{min-height:100%;}
+a,li{-webkit-tap-highlight-color: transparent;-webkit-touch-callout: @no;
+  -webkit-user-select: @no;}
+a img{border:0;}
+input,button,select,textarea{
+  outline:@no;-/*webkit-appearance: none;*/-webkit-tap-highlight-color:rgba(0,0,0,0);
+}
+.fl{float:@l;}
+.fr{float:@r;}
+.pr{position:relative;}
+.circle{border-radius:100%;-webkit-border-radius:100%;}
+.cw{color:#fff;}
+.vm{vertical-align: middle;}
+
+
+//公用函数类
+//超出几行显示...
+.ell-line(@ln){
+  text-overflow:ellipsis; overflow: hidden;
+  display: -webkit-box; -webkit-line-clamp: @ln;  -webkit-box-orient: vertical;word-break:break-all;
+}
+
+//圆角
+.border-radius(@radius:@p5){
+  border-radius:@radius;
+  -webkit-border-radius:@radius;
+}
+.box-sizing(){
+  box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+}
+.transition(@time:1s){
+  transition: all @time;
+  -webkit-transition: all @time;
+}
+.rorate(@deg:0){
+  transform: rotate(@deg);
+  -webkit-transform: rotate(@deg);
+}
+//全屏背影
+.fullbg(@picname){
+  background:url("@{baseurl}@{picname}") left top no-repeat;
+  background-size:100% 100%;
+}
+//具体尺寸背影
+.bg-size(@picname,@w:auto,@h:auto,@l:left,@t:top,@p:no-repeat){
+  background:url("@{baseurl}@{picname}") @l @t @p;
+  background-size:@w @h;
+}
+//普通背景
+.bg(@picname,@l:left,@t:top,@p:no-repeat){
+  background:url("@{baseurl}@{picname}") @l @t @p;
+}
+//居中背景
+.bg-center(@picname,@p:no-repeat){
+  background:url("@{baseurl}@{picname}") center center @p;
+}
+//背景色
+.bg-color(@c){
+  background-color:@c;
+}
+.bg-position(@value){
+  background-position:@value;
+}
+.mt(@px){
+  margin-top:~`@{px} + 'px'`;
+}
+.mr(@px){
+  margin-right:~`@{px} + 'px'`;
+}
+.ml(@px){
+  margin-left:~`@{px} + 'px'`;
+}
+.mb(@p){
+  margin-bottom:~`@{p} + 'px'`;
+}
+.pt(@px){
+  padding-top:~`@{px} + 'px'`;
+}
+.pr(@px){
+  padding-right:~`@{px} + 'px'`;
+}
+.pl(@px){
+  padding-left:~`@{px} + 'px'`;
+}
+.plr(@px:10){
+  padding-right:~`@{px} + 'px'`;
+  padding-left:~`@{px} + 'px'`;
+}
+.ptb(@px:10){
+  padding-top:~`@{px} + 'px'`;
+  padding-bottom:~`@{px} + 'px'`;
+}
+.pb(@px){
+  padding-bottom:~`@{px} + 'px'`;
+}
+.p(@px){
+  padding:~`@{px} + 'px'`;
+}
+.lh(@px){
+  line-height:~`@{px} + 'px'`;
+}
+.fz(@px){
+  font-size:~`@{px} + 'rem'`;
+}
+//绝对定位
+.pa(@left:0,@top:0,@zindex:1) {
+  position:absolute;
+  left:@left;
+  top:@top;
+  z-index:@zindex;
+}
+.pab(@left:0,@bottom:0,@zindex:1) {
+  position:absolute;
+  left:@left;
+  bottom:@bottom;
+  z-index:@zindex;
+}
+//绝对定位right
+.par(@right:0,@top:0,@zindex:1) {
+  position:absolute;
+  right:@right;
+  top:@top;
+  z-index:@zindex;
+}
+//绝对定位居中
+.ab-center(@w,@h,@zindex:1){
+  position:absolute;
+  left:50%;
+  top:50%;
+  width:~`@{w} + 'px'`;
+  height:~`@{h} + 'px'`;
+  margin:~`-@{h}/2 + 'px 0 0 -' + @{w}/2 + 'px'`;
+  z-index:@zindex;
+}
+.pf(@left:0,@top:0,@z-index:1){
+  position:fixed;
+  left:@left;
+  top:@top;
+  z-index:@z-index;
+}
+.pfr(@right:0,@top:0,@z-index:1){
+  position:fixed;
+  right:@right;
+  top:@top;
+  z-index:@z-index;
+}
+.pfb(@left:0,@bottom:0,@z-index:1){
+  position:fixed;
+  left:@left;
+  bottom:@bottom;
+  z-index:@z-index;
+}
+//设置为块级元素，设置高宽
+.dba(@w,@h) {
+  display: block;
+  width: ~`@{w} + 'px'`;
+  height: ~`@{h} + 'px'`;
+  line-height:~`@{h} + 'px'`;
+}
+.dib(@w,@h) {
+  display: inline-block;
+  width: ~`@{w} + 'px'`;
+  height: ~`@{h} + 'px'`;
+  line-height:~`@{h} + 'px'`;
+}
+.wh(@w,@h) {
+  width:@w;
+  height:@h;
+}
+.w(@w){
+  width:@w;
+}
+.h(@h){
+  height:@h;
+}
+
+.c(@color){
+  color:@color;
+}
+
+//设置统一高度与行高
+.dl(@h){
+  height: ~`@{h} + 'px'`;
+  line-height: ~`@{h} + 'px'`;
+}
+.bd(@c){
+  border:1px solid @c;
+}
+.bdb(@c){
+  border-bottom:1px solid @c;
+}
+.bdt(@c){
+  border-top:1px solid @c;
+}
+.box-shadow(@v){
+  box-shadow:@v;
+}
+.lh30{
+  .lh(30);
+}
+.lh24{
+  .lh(24);
+}
+.lh18{
+  .lh(18);
+}
+.df{
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: flex;
+}
+.df1{
+  -webkit-box-flex: 1;
+  flex:1;
+  -webkit-flex:1;
+  width:0%; //子元素的内容长短不同会导致无法“等分”
+}
